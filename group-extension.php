@@ -24,6 +24,7 @@ class Rug_Group_Extension extends BP_Group_Extension {
 		
 		//show form here
 		
+		$this->display_form( $group_id );
 		wp_nonce_field( 'groups_create_save_' . $this->slug );
 	}
 	
@@ -52,6 +53,21 @@ class Rug_Group_Extension extends BP_Group_Extension {
 	}
 	
 	
+	
+	private function display_form( $group_id = false ) {
+		$event_id = '';
+		if( $group_id )
+			$event_id = devb_get_group_evet_id( $group_id );
+		?>
+		<div id="rug-event-id">
+			<label>
+				Event Id:
+				<input type="text" name="devb_event_id" id="devb_event_id" value="<?php echo $event_id;?>" placeholder="Please enter the event Id" />
+			</label>
+		</div>
+	<?php
+	
+	}
 }
 
 bp_register_group_extension( 'Rug_Group_Extension' );

@@ -7,8 +7,10 @@
  * @return type
  */
 function devb_update_group_evet_id( $group_id, $event_id ) {
+	if( ! $group_id )
+		return false;
 	
-	return groups_update_groupmeta( $group_id, 'event_id', $event_id );
+	return groups_update_groupmeta( $group_id, 'event_id', absint( $event_id ) ) ;
 }
 
 /**
