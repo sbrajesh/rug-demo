@@ -4,13 +4,13 @@ class Rug_Group_Extension extends BP_Group_Extension {
 
 	public $visibility = 'public';
 	public $enable_create_step = true; // enable create step
-	public $enable_nav_item    = false; //do not show in front end
-	public $enable_edit_item   = true; // If your extensi
+	public $enable_nav_item    = true; //do not show in front end
+	public $enable_edit_item   = false; // If your extensi
 	
 	
 	public function __construct() {
 
-		$this->name = __( 'Event Id', 'bcg' );
+		$this->name = __( 'Event', 'bcg' );
 		$this->slug = 'event-list';
 
 		$this->create_step_position = 21;
@@ -52,8 +52,29 @@ class Rug_Group_Extension extends BP_Group_Extension {
 		
 	}
 	
+	/**
+	 * Display:
+	 * @param type $group_id
+	 */
+	public function display( $group_id = null ) {
+		
+		$event_id = devb_get_group_evet_id($group_id );
+		if( !$event_id ){
+			
+			//may be show some message here by echoing
+			
+			return ;
+		}
+		$shortcode = " [calendar id={$event_id}] ";
+		echo do_shortcode( $shortcode );
+		
+	}
 	
-	
+	/**
+	 * The form we use to collect event id
+	 * 
+	 * @param type $group_id
+	 */
 	private function display_form( $group_id = false ) {
 		$event_id = '';
 		if( $group_id )
