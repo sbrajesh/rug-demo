@@ -89,6 +89,11 @@ class Rug_Group_Extension extends BP_Group_Extension {
 	<?php
 	
 	}
+	
+	public function _display_hook() {
+		add_action( 'bp_template_content', 'buddydev_generate_group_content'  );
+		bp_core_load_template( apply_filters( 'bp_core_template_plugin', $this->template_file ) );
+	}
 }
 
 bp_register_group_extension( 'Rug_Group_Extension' );

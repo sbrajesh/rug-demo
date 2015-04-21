@@ -43,10 +43,14 @@ class Rug_Plugin_Helper {
 		$files = array(
 			'group-extension.php',
 			'functions.php',
+			'screens.php',
+			'hooks.php',
 		);
 		
 		foreach( $files as $file )
 			require_once $path . $file ;
+		
+		
 	}
 	
 	
